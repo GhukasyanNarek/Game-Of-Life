@@ -3,11 +3,23 @@ import random
 
 
 def random_state(width, height):
-    board = [[random.random() for i in range(width)]] * height
+    board = [[random.random() for _ in range(width)] for _ in range(height)]
+
+    for i in range(height):
+        for j in range(width):
+            board[i][j] = 1 if board[i][j] > 0.5 else 0
+    return board
 
 
-# Press the green button in the gutter to run the script.
+def render(board):
+    alive = '█'
+    dead = ' '
+
+    height = len(board)
+    width = len(board[0])
+    return width, height
+
+
 if __name__ == '__main__':
-    print(random_state(5, 5))
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    print(random_state(6, 4))
+    print(f"Dims: {render(random_state(6, 4))}")
