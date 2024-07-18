@@ -12,14 +12,26 @@ def random_state(width, height):
 
 
 def render(board):
-    alive = '█'
+    alive = '#'  # alive = '█'
     dead = ' '
 
     height = len(board)
     width = len(board[0])
-    return width, height
+
+    rendered_board = ' ' + '-' * width + '\n'
+
+    for row in board:
+        rendered_row = '|'
+        for cell in row:
+            rendered_row += alive if cell == 1 else dead
+        rendered_row += '|\n'
+        rendered_board += rendered_row
+
+    rendered_board += ' ' + '-' * width
+
+    return rendered_board
 
 
 if __name__ == '__main__':
-    print(random_state(6, 4))
-    print(f"Dims: {render(random_state(6, 4))}")
+    # print(random_state(30, 30))
+    print(f"After Rendering{render(random_state(6, 4))}")
