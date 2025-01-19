@@ -45,10 +45,10 @@ def cell_next_state(x, y, board, board_width, board_height):
     alive_neighbors = 0
 
     for x1 in range(x - 1, x + 2):
-        if x1 < 0 or x1 >= board_height:  # Corrected check for rows
+        if x1 < 0 or x1 >= board_height:
             continue
         for y1 in range(y - 1, y + 2):
-            if y1 < 0 or y1 >= board_width or (x1 == x and y1 == y):  # Corrected check for columns
+            if y1 < 0 or y1 >= board_width or (x1 == x and y1 == y):
                 continue
             if is_alive(x1, y1, board):
                 alive_neighbors += 1
@@ -61,8 +61,8 @@ def cell_next_state(x, y, board, board_width, board_height):
 
 def get_next_state(board, board_width, board_height):
     next_state = dead_state(board_width, board_height)
-    for row in range(board_height):  # Corrected to iterate over rows first
-        for col in range(board_width):  # Corrected to iterate over columns second
+    for row in range(board_height):
+        for col in range(board_width):
             next_state[row][col] = cell_next_state(row, col, board, board_width, board_height)
 
     return next_state
